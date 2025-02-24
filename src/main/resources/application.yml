@@ -1,0 +1,39 @@
+logging:
+  level:
+    com:
+      eazybytes:
+        gatewayserver: DEBUG
+
+spring:
+  application:
+    name: gatewayserver
+  config:
+    import: "optional:configserver:http://localhost:8071/"
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+          lower-case-service-id: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  health:
+    liveness-state:
+      enabled: true
+    readiness-state:
+      enabled: true
+  endpoint:
+    health:
+      probes:
+        enabled: true
+    gateway:
+      access: unrestricted
+  info:
+    env:
+      enabled: true
+
+
